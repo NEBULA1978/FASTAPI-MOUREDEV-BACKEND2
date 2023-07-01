@@ -49,3 +49,52 @@ Estos son solo algunos ejemplos de los códigos de respuesta HTTP más comunes. 
 
 //////////////////////////////
 
+//////////////////////////////
+Añado ruta main.py:
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+# Siempre que llamemos al servidor asimcronamente
+async def root():
+    return "Hello World"
+
+@app.get("/url")
+# Siempre que llamemos al servidor asimcronamente
+async def url():
+    return {"url_curso":"https://mouredev.com/python3"}
+
+Para ver en navegador:
+http://127.0.0.1:8000/url
+
+VEO JSON:
+
+{
+"url_curso": "https://mouredev.com/python3"
+}
+{
+"url_curso": "https://mouredev.com/python3"
+}
+
+//////////////////////////////
+
+
+//////////////////////////////
+
+PARA INICIAR DOCUMETACION CON FRAMEWORK
+
+Para ver Framework swager:
+
+http://127.0.0.1:8000/docs#/default/url_url_get
+
+
+Para ver Framework redoc:
+
+http://127.0.0.1:8000/redoc
+
+1h 30
+
+//////////////////////////////
+
