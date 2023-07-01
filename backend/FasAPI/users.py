@@ -59,3 +59,28 @@ async def user(id: int):
         return list(users)[0]
     except IndexError:
         return {"error":"No se ha encontrado el ususario"}
+    
+@app.get("/userquery/")
+async def user(id: int):
+    users = filter(lambda user: user.id == id, users_list)
+    try:
+        return list(users)[0]
+    except IndexError:
+        return {"error":"No se ha encontrado el ususario"}
+# ERROR POR CONSOLA THUNDERCLIENT
+# {
+#   "detail": [
+#     {
+#       "loc": [
+#         "query",
+#         "id"
+#       ],
+#       "msg": "field required",
+#       "type": "value_error.missing"
+#     }
+#   ]
+# }
+# PONGO y NO ME DA ERROR:
+# http://127.0.0.1:8000/userquery?id=1
+
+# VOY POR 2h19 BIEN
