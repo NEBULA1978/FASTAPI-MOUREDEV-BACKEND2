@@ -31,3 +31,21 @@ Vemos hola mundo
 
 //////////////////////////////
 
+//////////////////////////////
+
+Los códigos de respuesta HTTP más comunes son los siguientes:
+
+    200 OK: Indica que la solicitud ha sido exitosa.
+    201 Created: Indica que la solicitud ha sido exitosa y ha resultado en la creación de un nuevo recurso.
+    204 No Content: Indica que la solicitud ha sido exitosa, pero no hay contenido para enviar en la respuesta.
+    400 Bad Request: Indica que la solicitud no se pudo entender o estaba mal formada.
+    401 Unauthorized: Indica que la solicitud requiere autenticación o el usuario no tiene los permisos necesarios.
+    403 Forbidden: Indica que el servidor entendió la solicitud, pero se niega a autorizarla.
+    404 Not Found: Indica que el recurso solicitado no se encontró en el servidor.
+    500 Internal Server Error: Indica que se produjo un error interno en el servidor mientras procesaba la solicitud.
+
+Estos son solo algunos ejemplos de los códigos de respuesta HTTP más comunes. Hay muchos otros códigos que se utilizan para diferentes situaciones y casos de uso específicos. Cada código tiene un significado específico y ayuda a comunicar el resultado de una solicitud entre el cliente y el servidor.
+
+
+//////////////////////////////
+
