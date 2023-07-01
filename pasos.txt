@@ -98,3 +98,20 @@ http://127.0.0.1:8000/redoc
 
 //////////////////////////////
 
+//////////////////////////////
+
+OPERACION GET:
+
+Con thunder client con get:
+http://127.0.0.1:8000
+
+"Hello World"
+
+http://127.0.0.1:8000/url
+
+{
+  "url_curso": "https://mouredev.com/python3"
+}
+
+//////////////////////////////
+
