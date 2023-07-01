@@ -58,4 +58,4 @@ async def user(id: int):
     try:
         return list(users)[0]
     except IndexError:
-        return ""
+        return {"error":"No se ha encontrado el ususario"}

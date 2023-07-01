@@ -13,3 +13,8 @@ async def root():
 # Siempre que llamemos al servidor asimcronamente
 async def url():
     return {"url_curso":"https://mouredev.com/python3"}
+# Para ver en navegador:
+# http://127.0.0.1:8000/user/1
+# http://127.0.0.1:8000/user/2
+# http://127.0.0.1:8000/user/3
+# http://127.0.0.1:8000/user/4#ERROR NO EXISTE USUSARIO
