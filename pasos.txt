@@ -1,0 +1,33 @@
+cd Backend
+
+cd FastAPI
+
+//////////////////////////////
+
+Creamos archivo main.py:
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+# Siempre que llamemos al servidor asimcronamente
+async def root():
+    return "Hello World"
+
+//////////////////////////////
+Para iniciar servidor y recarge automaticamente:
+
+uvicorn main:app --reload
+
+
+
+//////////////////////////////
+
+Vamos a navegador web:
+http://127.0.0.1:8000/
+
+Vemos hola mundo
+
+//////////////////////////////
+
