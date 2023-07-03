@@ -84,10 +84,10 @@ async def user(user: User):
     if type(search_user(user.id)) == User:
         return {"error": " El ususario ya existe"}
 
-    else:
-        # Si no existe añadimos ususario
-        users_list.append(user)
-        return user
+    # Si no existe añadimos ususario
+    users_list.append(user)
+    return user
+
 
 # Metodo PUT:
 # En thundderclient
@@ -103,8 +103,26 @@ async def user(user: User):
             found = True
     if not found:
         return {"error": "No se ha actualizado el ususario"}
-    else:
-        return user
+
+    return user
+
+
+# DELETE
+@app.delete("/user/{id}")
+async def delete_user(id: int):
+    found = False
+
+    for index, saved_user in enumerate(users_list):
+        if saved_user.id == id:
+            del users_list[index]
+            found = True
+            break
+
+    if not found:
+        return {"error": "El usuario no existe"}
+
+    return {"message": "Usuario eliminado correctamente"}
+
 
 def search_user(id: int):
     users = filter(lambda user: user.id == id, users_list)
@@ -112,6 +130,7 @@ def search_user(id: int):
         return list(users)[0]
     except IndexError:
         return {"error": "No se ha encontrado el ususario"}
+        found = True
 
 
 # ERROR POR CONSOLA THUNDERCLIENT
@@ -134,3 +153,4 @@ def search_user(id: int):
 # http://127.0.0.1:8000/userquery?id=1
 
 # VOY POR 2h19 BIEN
+# VOY POR 2h58 DELETE BIEN
