@@ -82,6 +82,7 @@ async def user(id: int):
 @app.post("/user/",status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
+        # Para lanazar excepcion con raise no return
         raise HTTPException(status_code=404,detail=" El ususario ya existe")
         
 
