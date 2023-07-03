@@ -65,6 +65,27 @@ async def user(id: int):
 async def user(id: int):
     return search_user(id)
 
+# Para hacer peticion con post en thunderclient:
+# http://127.0.0.1:8000/user/
+# En el body introduzco json:
+        # {
+        #     "id": 4,
+        #     "name": "Jose",
+        #     "surname": "Pascual",
+        #     "url": "https://mouredev.com/python3",
+        #     "age": 35
+        # }
+# Si lo tengo me dice metodo no permitido
+
+@app.post("/user/")
+async def user(user: User):
+    if type(search_user(user.id)) == User:
+        return {"error": " El ususario ya existe"}
+
+    else:
+        # Si no existe añadimos ususario
+        users_list.append(user)
+
 
 def search_user(id: int):
     users = filter(lambda user: user.id == id, users_list)
@@ -87,6 +108,9 @@ def search_user(id: int):
 #     }
 #   ]
 # }
+
+# En esta ruta absoluta pongo en la consola: uvicorn users:app --reload
+# /home/next/Vídeos/VIDEOS_PROYECTOS/FASTAPI-MOUREDEV-BACKEND/backend/FasAPI
 # PONGO y NO ME DA ERROR:
 # http://127.0.0.1:8000/userquery?id=1
 
