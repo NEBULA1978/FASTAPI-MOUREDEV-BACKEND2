@@ -87,6 +87,7 @@ async def user(user: User):
     else:
         # Si no existe añadimos ususario
         users_list.append(user)
+        return user
 
 # Metodo PUT:
 # En thundderclient
@@ -102,7 +103,8 @@ async def user(user: User):
             found = True
     if not found:
         return {"error": "No se ha actualizado el ususario"}
-
+    else:
+        return user
 
 def search_user(id: int):
     users = filter(lambda user: user.id == id, users_list)
