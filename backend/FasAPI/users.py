@@ -108,20 +108,18 @@ async def user(user: User):
 
 
 # DELETE
+# En thunder client
+# http://127.0.0.1:8000/user/4
+
 @app.delete("/user/{id}")
-async def delete_user(id: int):
+async def user(id: int):
     found = False
 
     for index, saved_user in enumerate(users_list):
         if saved_user.id == id:
             del users_list[index]
-            found = True
-            break
-
     if not found:
-        return {"error": "El usuario no existe"}
-
-    return {"message": "Usuario eliminado correctamente"}
+        return {"error": "No se ha encontrado el ususario"}
 
 
 def search_user(id: int):
