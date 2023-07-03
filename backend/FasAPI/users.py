@@ -79,7 +79,7 @@ async def user(id: int):
 # Si lo tengo me dice metodo no permitido
 
 
-@app.post("/user/")
+@app.post("/user/",status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
         return {"error": " El ususario ya existe"}
