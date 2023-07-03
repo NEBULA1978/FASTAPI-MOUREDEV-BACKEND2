@@ -133,6 +133,9 @@ def search_user(id: int):
         return {"error": "No se ha encontrado el ususario"}
         found = True
 
+# Para ver por navegador:
+# http://127.0.0.1:8000/docs
+
 
 # ERROR POR CONSOLA THUNDERCLIENT
 # {
