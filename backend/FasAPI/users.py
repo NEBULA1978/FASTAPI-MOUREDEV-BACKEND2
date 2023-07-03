@@ -65,17 +65,19 @@ async def user(id: int):
 async def user(id: int):
     return search_user(id)
 
+
 # Para hacer peticion con post en thunderclient:
 # http://127.0.0.1:8000/user/
 # En el body introduzco json:
-        # {
-        #     "id": 4,
-        #     "name": "Jose",
-        #     "surname": "Pascual",
-        #     "url": "https://mouredev.com/python3",
-        #     "age": 35
-        # }
+# {
+#     "id": 4,
+#     "name": "Jose",
+#     "surname": "Pascual",
+#     "url": "https://mouredev.com/python3",
+#     "age": 35
+# }
 # Si lo tengo me dice metodo no permitido
+
 
 @app.post("/user/")
 async def user(user: User):
@@ -85,6 +87,21 @@ async def user(user: User):
     else:
         # Si no existe añadimos ususario
         users_list.append(user)
+
+# Metodo PUT:
+# En thundderclient
+# http://127.0.0.1:8000/user
+# Ymodificamos el valor del json desde el body
+@app.put("/user/")
+async def user(user: User):
+    found = False
+
+    for index, saved_user in enumerate(users_list):
+        if saved_user.id == user.id:
+            users_list[index] = user
+            found = True
+    if not found:
+        return {"error": "No se ha actualizado el ususario"}
 
 
 def search_user(id: int):
