@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 
-app = FastAPI()
+router = APIRouter()
 
 
-@app.get("/products")
+@router.get("/products")
 # Siempre que llamemos al servidor asimcronamente
 async def products():
     return ["Producto1","Producto2","Producto3","Producto4","Producto5"]
