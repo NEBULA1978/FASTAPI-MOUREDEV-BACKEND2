@@ -1,8 +1,8 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import APIRouter,HTTPException
 from pydantic import BaseModel
 
 
-app = FastAPI()
+router = APIRouter()
 
 
 class User(BaseModel):
@@ -24,7 +24,7 @@ users_list = [
 ]
 
 
-@app.get("/usersjson")
+@router.get("/usersjson")
 async def usersjson():
     return [
         {
@@ -51,17 +51,17 @@ async def usersjson():
     ]
 
 
-@app.get("/users")
+@router.get("/users")
 async def users():
     return users_list
 
 
-@app.get("/user/{id}")
+@router.get("/user/{id}")
 async def user(id: int):
     return search_user(id)
 
 
-@app.get("/userquery/")
+@router.get("/userquery/")
 async def user(id: int):
     return search_user(id)
 
@@ -79,7 +79,7 @@ async def user(id: int):
 # Si lo tengo me dice metodo no permitido
 
 
-@app.post("/user/",status_code=201)
+@router.post("/user/",status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
         # Para lanazar excepcion con raise no return
@@ -95,7 +95,7 @@ async def user(user: User):
 # En thundderclient
 # http://127.0.0.1:8000/user
 # Ymodificamos el valor del json desde el body
-@app.put("/user/")
+@router.put("/user/")
 async def user(user: User):
     found = False
 
@@ -113,7 +113,7 @@ async def user(user: User):
 # En thunder client
 # http://127.0.0.1:8000/user/4
 
-@app.delete("/user/{id}")
+@router.delete("/user/{id}")
 async def user(id: int):
     found = False
 

@@ -12,3 +12,5 @@ async def products():
 # uvicorn products:app --reload
 # Para ver en thunderclient:
 # http://127.0.0.1:8000/products
+# Para ver en thunderclient:
+# http://127.0.0.1:8000/users Vemos ususarios con router
