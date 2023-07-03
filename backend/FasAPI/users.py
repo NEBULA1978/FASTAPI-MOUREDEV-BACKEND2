@@ -118,10 +118,11 @@ async def user(id: int):
     for index, saved_user in enumerate(users_list):
         if saved_user.id == id:
             del users_list[index]
+            found = True
     if not found:
         return {"error": "No se ha encontrado el ususario"}
 
-
+    
 def search_user(id: int):
     users = filter(lambda user: user.id == id, users_list)
     try:
