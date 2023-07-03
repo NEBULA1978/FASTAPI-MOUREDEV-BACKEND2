@@ -14,9 +14,13 @@ class User(BaseModel):
 
 
 users_list = [
-    User(id=1, name="Jose", surname="Pascual", url="https://mouredev.com/python3", age=35),
+    User(
+        id=1, name="Jose", surname="Pascual", url="https://mouredev.com/python3", age=35
+    ),
     User(id=2, name="Luis", surname="Ivarra", url="https://Ivarra.com/python3", age=25),
-    User(id=3, name="Pedro", surname="Suarez", url="https://Suarez.com/python3", age=55),
+    User(
+        id=3, name="Pedro", surname="Suarez", url="https://Suarez.com/python3", age=55
+    ),
 ]
 
 
@@ -54,19 +58,22 @@ async def users():
 
 @app.get("/user/{id}")
 async def user(id: int):
-    users = filter(lambda user: user.id == id, users_list)
-    try:
-        return list(users)[0]
-    except IndexError:
-        return {"error":"No se ha encontrado el ususario"}
-    
+    return search_user(id)
+
+
 @app.get("/userquery/")
 async def user(id: int):
+    return search_user(id)
+
+
+def search_user(id: int):
     users = filter(lambda user: user.id == id, users_list)
     try:
         return list(users)[0]
     except IndexError:
-        return {"error":"No se ha encontrado el ususario"}
+        return {"error": "No se ha encontrado el ususario"}
+
+
 # ERROR POR CONSOLA THUNDERCLIENT
 # {
 #   "detail": [
