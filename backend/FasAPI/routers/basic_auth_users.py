@@ -15,7 +15,7 @@ class User(BaseModel):
 class UserDB(User):
     password: str
 
-    
+
 # Una lista o un array
 users_db = {
     "mouredev":{
@@ -33,6 +33,11 @@ users_db = {
         "password":"654321"
     }
 }
+
+def search_user(username:str):
+    if username in users_db:
+        return UserDB(users_db[username])
+
 
 # Para iniciar api autentificacion:
 # Aquí en carpeta routers:
