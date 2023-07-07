@@ -45,14 +45,21 @@ def search_user(username: str):
 
 async def current_user(token: str = Depends(oauth2)):
     user = search_user(token)
+    
+
     # Si no encontramos usuario excepcion
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Credenciales de autentificacion invalidas",
             headers={"www-Authenticate":"Bearer"})
-    return user
 
+    if user.disabled:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ususario inactivo")
+
+    return user
 @app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
     # Buscamos usuario en la base de datos
@@ -75,10 +82,16 @@ async def me(user: User = Depends(current_user)):
 # Para iniciar api autentificacion:
 # Aquí en carpeta routers:
 # uvicorn basic_auth_users:app --reload
-# Para llamar a ruta login;
+# Para llamar a ruta login con thunderclient en Body con Form enviamos nombre y password;
+# Metodo post
 # http://127.0.0.1:8000/loginForm Fields
 # Form Fields(introducimos valores nombre y password)￼
 # username
 # mouredev
 # ￼
 # password
+
+# Peticion GET:
+# http://127.0.0.1:8000/users/me
+# En Auth en Bearer introducimos en Bearer Token mouredev y nos muestra datos no bien
+ 
