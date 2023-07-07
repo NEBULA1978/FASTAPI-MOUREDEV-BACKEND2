@@ -10,6 +10,12 @@ class User(BaseModel):
     full_name: str
     email: str
     disabled: bool
+
+
+class UserDB(User):
+    password: str
+
+    
 # Una lista o un array
 users_db = {
     "mouredev":{
