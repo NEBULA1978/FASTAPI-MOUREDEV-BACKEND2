@@ -5,15 +5,16 @@ router = APIRouter(prefix="/products")
 product_list = ["Producto1","Producto2","Producto3","Producto4","Producto5"]
 
 
-@router.get("/products")
+@router.get("/")
 # Siempre que llamemos al servidor asimcronamente
 async def products():
     return product_list
 
-@router.get("/products/{id}")
+@router.get("/{id}")
 # Siempre que llamemos al servidor asimcronamente
 async def products(id: int):
-    return product_list
+    return product_list[id]
+
 # Para iniciar uvicorn de esta api productos
 # uvicorn products:app --reload
 # Para ver en thunderclient:
