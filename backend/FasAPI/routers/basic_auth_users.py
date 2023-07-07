@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 app = FastAPI()
 
-oauth2 = OAuth2PasswordBearer(tokenurl="login")
+oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
 
 class User(BaseModel):
@@ -40,14 +40,18 @@ users_db = {
 
 def search_user(username: str):
     if username in users_db:
-        return UserDB(users_db[username])
+        return UserDB(**users_db[username])
 
 
 async def current_user(token: str = Depends(oauth2)):
     user = search_user(token)
+    # Si no encontramos usuario excepcion
     if not user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=" Credenciales de autentificacion invalidas")
-
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Credenciales de autentificacion invalidas",
+            headers={"www-Authenticate":"Bearer"})
+    return user
 
 @app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
@@ -71,3 +75,10 @@ async def me(user: User = Depends(current_user)):
 # Para iniciar api autentificacion:
 # Aquí en carpeta routers:
 # uvicorn basic_auth_users:app --reload
+# Para llamar a ruta login;
+# http://127.0.0.1:8000/loginForm Fields
+# Form Fields(introducimos valores nombre y password)￼
+# username
+# mouredev
+# ￼
+# password
