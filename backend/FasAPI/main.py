@@ -47,3 +47,7 @@ async def url():
 # ///////////////
 # Para ver imagenes en navegador:
 # http://127.0.0.1:8000/static/imagenes/telerruptor.jpg
+
+# Para iniciar api autentificacion:
+# Voy a carpeta routers:
+# uvicorn basic_auth_users:app --reload

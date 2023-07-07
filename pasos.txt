@@ -285,3 +285,11 @@ POST,PUT,DELETE:
 
 //////////////////////////////
 
+Voy 4h23 autentificacion ususarios basica:
+
+Voy a la carpeta routers:
+Montamos esta api para que no sea un router como tal ,almenos inicialmente,
+para trabajar solo con esta api.
+
+
+
