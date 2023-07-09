@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
-from jose import jwt
+from jose import jwt, JWTError
 
 ALGORITHMN = "HS256"
 # Duration is 1 minute
@@ -60,15 +60,16 @@ def search_user_db(username: str):
 
 
 async def auth_user(token: str = Depends(oauth2)):
+    try:
+        user = jwt.decode(token, SECRET, algorithms=[ALGORITHMN]).get("sub")
 
-    user = jwt.decode(token,SECRET,algorithms=ALGORITHMN)
-
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Credenciales de autentificacion invalidas",
-            headers={"www-Authenticate": "Bearer"},
-        )
+    except JWTError:
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Credenciales de autentificacion invalidas",
+                headers={"www-Authenticate": "Bearer"},
+            )
 
 
 async def current_user(user: User = Depends(auth_user)):
