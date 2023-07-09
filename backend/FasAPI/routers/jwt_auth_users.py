@@ -65,6 +65,10 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(status_code=400, detail=" El ususario no es correcto")
     # Comprobamos usuario base de datos
     user = search_user_db(form.username)
+
+    # Verificamos contraseña encriptada
+    crypt.verify(form.password,user.password)
+
     # Comprobamos contraseña
     if not form.password == user.password:
         raise HTTPException(status_code=400, detail=" La contraseña no es correcta")
