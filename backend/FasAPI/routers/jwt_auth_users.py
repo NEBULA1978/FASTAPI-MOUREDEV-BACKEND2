@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException,status
+from fastapi import FastAPI, Depends, HTTPException,status,crypt
 from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import jwt
@@ -57,6 +57,6 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     # Comprobamos usuario base de datos
     user = search_user_db(form.username)
     # Comprobamos contraseña
-    if not form.password == user.password:
+    if not crypt.verify(form.password,user.password):
         raise HTTPException(status_code=400, detail=" La contraseña no es correcta")
     return {"acces_token": user.username, "token_type": "bearer"}
