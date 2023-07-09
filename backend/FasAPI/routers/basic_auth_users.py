@@ -98,5 +98,16 @@ async def me(user: User = Depends(current_user)):
 
 # Peticion GET:
 # http://127.0.0.1:8000/users/me
-# En Auth en Bearer introducimos en Bearer Token mouredev y nos muestra datos no bien
+# En Auth en Bearer introducimos en Bearer Token mouredev y nos muestra {
+#   "detail": "Ususario inactivo"
+# }
 
+# Para ususario2:
+# http://127.0.0.1:8000/login
+# En FOrm username y passwordy nos muestra:
+# {
+#   "acces_token": "mouredev2",
+#   "token_type": "bearer"
+# }
+# Estamos autenticado pero no autorizado "disabled": True,
+# No pagamos un curso podemos entrar con registro anterior pero no podemos ver
