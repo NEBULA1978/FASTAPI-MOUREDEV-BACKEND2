@@ -66,6 +66,7 @@ async def auth_user(token: str = Depends(oauth2)):
         headers={"www-Authenticate": "Bearer"},
     )
     try:
+        # Decode the token and get the "sub" (subject) field
         username = jwt.decode(token, SECRET, algorithms=[ALGORITHMN]).get("sub")
         if username is None:
             raise exception
@@ -77,7 +78,7 @@ async def auth_user(token: str = Depends(oauth2)):
 
 
 async def current_user(user: User = Depends(auth_user)):
-    # If user is disabled, raise exception
+    # If user is disabled, raise an exception
     if user.disabled:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario inactivo"
