@@ -74,7 +74,10 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     # Comprobamos contraseña
     if not crypt.verify(form.password,user.password):
         raise HTTPException(status_code=400, detail=" La contraseña no es correcta")
-    access_token_expiration = timedelta(minutes=ACCES_TOKEN_DURATION)
+    # Tiempo de expiracion
+    # access_token_expiration = timedelta(minutes=ACCES_TOKEN_DURATION)
+
+    expire = datetime.utcnow() + timedelta(minutes=ACCES_TOKEN_DURATION)
 
     return {"acces_token": user.username, "token_type": "bearer"}
 
@@ -87,7 +90,8 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 
 
 
-
+# Para iniciar en consola carpeta routers:
+# uvicorn jwt_auth_users:app --reload
 
 # Instalo:
 # pip install "python-jose[cryptography]"
