@@ -8,6 +8,11 @@ from jose import jwt
 ALGORITHMN = "HS256"
 # Duration is 1 minute
 ACCESS_TOKEN_DURATION = 1
+# GENERO  DESDE CONSOLA
+# next@rases:~$ openssl rand -hex 23
+# f404aaddd22f07be3c526e7f3f6858389c4d2cda15eeb0
+
+SECRET = "f404aaddd22f07be3c526e7f3f6858389c4d2cda15eeb0"
 
 app = FastAPI()
 
@@ -15,6 +20,7 @@ crypt = CryptContext(schemes=["bcrypt"])
 
 # We have an endpoint called "login"
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
+
 
 # Define user models
 class User(BaseModel):
@@ -46,10 +52,12 @@ users_db = {
     },
 }
 
+
 # Search user in the database
 def search_user_db(username: str):
     if username in users_db:
         return UserDB(**users_db[username])
+
 
 @app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
@@ -69,14 +77,14 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_DURATION),
     }
 
-    return {"access_token": jwt.encode(access_token,algorithm=ALGORITHMN), "token_type": "bearer"}
+    return {
+        "access_token": jwt.encode(access_token,SECRET, algorithm=ALGORITHMN),
+        "token_type": "bearer",
+    }
 
 
 # VOY 5H17
 # PASO3 Final
-
-
-
 
 
 # Para iniciar en consola carpeta routers:
@@ -85,14 +93,6 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 # Instalo:
 # pip install "python-jose[cryptography]"
 #  pip install "passlib[bcrypt]"
-
-
-
-
-
-
-
-
 
 
 # ANTERIOR FALLA
@@ -144,7 +144,7 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 # def search_user_db(username: str):
 #     if username in users_db:
 #         return UserDB(**users_db[username])
-    
+
 
 # @app.post("/login")
 # async def login(form: OAuth2PasswordRequestForm = Depends()):
