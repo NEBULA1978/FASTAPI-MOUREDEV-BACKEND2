@@ -35,16 +35,19 @@ users_db = {
         "full_name": "Brais Moure",
         "email": "braismoure@mourede.com",
         "disabled": False,
-        "password": "123456",
+        "password": " $2a$12$fcojdAceoKpkkgLBdByvL.s9b.lJYoulzkI4uJjGMwKcsWFHZWjhe ",
     },
     "mouredev2": {
         "username": "mouredev2",
         "full_name": "Brais Moure 2",
         "email": "braismoure2@mourede.com",
         "disabled": True,
-        "password": "654321",
+        "password": " $2a$12$MnV0u2VCMOGRqzSl3hmNSOxj8sphooFsqGqdPx7FrX/.BS8Ul8p3y ",
     },
 }
+# Pagina para encriptar contraseñas:
+# https://bcrypt-generator.com/
+
 # PASO2 final
 
 # PASO3 Inicio
