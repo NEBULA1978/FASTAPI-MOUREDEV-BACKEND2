@@ -43,6 +43,12 @@ users_db = {
 # PASO2 final
 
 # PASO3 Inicio
+
+def search_user_db(username: str):
+    if username in users_db:
+        return UserDB(**users_db[username])
+    
+
 @app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
     # Buscamos usuario en la base de datos
