@@ -99,4 +99,4 @@ async def me(user: User = Depends(current_user)):
 # Peticion GET:
 # http://127.0.0.1:8000/users/me
 # En Auth en Bearer introducimos en Bearer Token mouredev y nos muestra datos no bien
- 
+
