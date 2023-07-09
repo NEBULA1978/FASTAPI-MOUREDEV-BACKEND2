@@ -78,9 +78,11 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     # access_token_expiration = timedelta(minutes=ACCES_TOKEN_DURATION)
 
     # El tiempo de ahora mas 1minuto expira
-    expire = datetime.utcnow() + timedelta(minutes=ACCES_TOKEN_DURATION)
 
-    access_token={} 
+    # Introduzco abajo y elimino la variable
+    # expire = datetime.utcnow() + timedelta(minutes=ACCES_TOKEN_DURATION)
+
+    access_token={"sub":user.username,"exp":datetime.utcnow() + timedelta(minutes=ACCES_TOKEN_DURATION)} 
 
     return {"access_token": user.username, "token_type": "bearer"}
 
