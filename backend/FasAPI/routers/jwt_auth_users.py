@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from jose import jwt
 
 ALGORITHMN = "HS256"
 # Duration is 1 minute
@@ -68,10 +69,10 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_DURATION),
     }
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": jwt.encode(access_token,algorithm=ALGORITHMN), "token_type": "bearer"}
 
 
-
+# VOY 5H17
 # PASO3 Final
 
 
