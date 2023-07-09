@@ -6,7 +6,7 @@ from passlib.context import CryptContext
 
 
 ALGORITHN = "HS256"
-Crypt = CryptContext(scheme="bcrypt")
+crypt = CryptContext(schemes="bcrypt")
 
 
 app = FastAPI()
