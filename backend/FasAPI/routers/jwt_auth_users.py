@@ -61,15 +61,20 @@ def search_user_db(username: str):
 
 async def auth_user(token: str = Depends(oauth2)):
     try:
-        user = jwt.decode(token, SECRET, algorithms=[ALGORITHMN]).get("sub")
-
-    except JWTError:
-        if not user:
+        username = jwt.decode(token, SECRET, algorithms=[ALGORITHMN]).get("sub")
+        if username is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Credenciales de autentificacion invalidas",
                 headers={"www-Authenticate": "Bearer"},
             )
+
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Credenciales de autentificacion invalidas",
+            headers={"www-Authenticate": "Bearer"},
+        )
 
 
 async def current_user(user: User = Depends(auth_user)):
