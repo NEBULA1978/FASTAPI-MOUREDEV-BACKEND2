@@ -11,7 +11,7 @@ ACCES_TOKEN_DURATION = 1
 
 app = FastAPI()
 
-crypt = CryptContext(schemes="bcrypt")
+crypt = CryptContext(schemes=["bcrypt"])
 
 # Tenemos endpoint que se llama login
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
